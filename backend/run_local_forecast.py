@@ -1,5 +1,5 @@
 # backend/run_local_forecast.py
-from forecast import run_prophet
+from services.forecast import run_prophet
 import os
 DATA_PATH = os.path.join("data","ocean_dataset_cleaned.csv")
 if __name__ == "__main__":
