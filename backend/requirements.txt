@@ -5,3 +5,8 @@ matplotlib
 scikit-learn
 prophet
 python-multipart
+plotly
+kaleido
+tensorflow
+pillow
+biopython

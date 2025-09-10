@@ -1,0 +1,29 @@
+0,Black-winged hatchetfish
+1,Bristlenose_catfish
+2,Electric blue cichild
+3,Electric_fish
+4,Flowerhorn cichlid
+5,Gold
+6,Guppy
+7,Oscar Fish
+8,Paradise Fish
+9,Powder_blue_fish
+10,Red_tail_black_shark
+11,Sea Horse Fish
+12,Thalassoma_bifasciatum
+13,Yellow Tang
+14,bala
+15,blood-red jewel cichild
+16,blue zebra angelfish
+17,bolivian ram
+18,botia striata fish
+19,celestial eye goldfish
+20,clown
+21,clown loach
+22,damsel fish
+23,figure eight puffer
+24,lion
+25,neon goby
+26,neon tetra
+27,symphysodon discus
+28,zebra danio fish
