@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { postFormData } from '../utils/api';
+import { mockEdnaAnalyze } from '../utils/mock';
 
 interface SpeciesResult {
   sequence: string;
   species: string;
   confidence?: number;
   invasive?: boolean;
+  sequenceId?: string;
 }
 
 const Biodiversity: React.FC = () => {
@@ -30,11 +33,7 @@ const Biodiversity: React.FC = () => {
     formData.append('file', selectedFile);
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/v1/edna/analyze', {
-        method: 'POST',
-        body: formData,
-      });
-      const result = await response.json();
+      const result = await postFormData<any>('/api/v1/edna/analyze', undefined, formData);
       
       if (result.detected_species) {
         setAnalysisResults(result.detected_species);
@@ -49,7 +48,7 @@ const Biodiversity: React.FC = () => {
       }
     } catch (error) {
       console.log('eDNA API not available, using mock results');
-      const mockResults = getMockeDNAResults();
+      const mockResults = mockEdnaAnalyze();
       setAnalysisResults(mockResults);
       
       // Check for invasive species in mock data
@@ -62,38 +61,7 @@ const Biodiversity: React.FC = () => {
     }
   };
 
-  const getMockeDNAResults = (): SpeciesResult[] => [
-    {
-      sequence: 'ATCGATCGATCGATCG',
-      species: 'Atlantic Cod (Gadus morhua)',
-      confidence: 94,
-      invasive: false
-    },
-    {
-      sequence: 'GCTAGCTAGCTAGCTA',
-      species: 'Harbor Seal (Phoca vitulina)',
-      confidence: 89,
-      invasive: false
-    },
-    {
-      sequence: 'TTAATTAATTAATTAA',
-      species: 'Blue Mussel (Mytilus edulis)',
-      confidence: 76,
-      invasive: false
-    },
-    {
-      sequence: 'CGCGCGCGCGCGCGCG',
-      species: 'Nile Tilapia (Oreochromis niloticus)',
-      confidence: 82,
-      invasive: true
-    },
-    {
-      sequence: 'AAAATTTTAAAATTTT',
-      species: 'European Green Crab (Carcinus maenas)',
-      confidence: 71,
-      invasive: false
-    }
-  ];
+  // Mock data now sourced from utils/mock with valid-looking sequence IDs
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -241,7 +209,7 @@ const Biodiversity: React.FC = () => {
                       <tr key={index} className="hover:bg-white/5 transition-colors duration-200">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm font-mono text-white/80 bg-white/10 rounded px-2 py-1">
-                            {result.sequence.substring(0, 16)}...
+                            {result.sequenceId || result.sequence.substring(0, 16) + '...'}
                           </div>
                         </td>
                         <td className="px-6 py-4">

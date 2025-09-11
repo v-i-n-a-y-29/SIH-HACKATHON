@@ -81,7 +81,7 @@ const Dashboard: React.FC = () => {
                   <span className="text-[#2ECC71]">Clean</span>
                 </div>
                 <div className="space-y-2">
-                  {['Atlantic Cod', 'Harbor Seal', 'Blue Mussel'].map((species, i) => (
+                  {['Indian Mackerel', 'Rohu', 'Hilsa'].map((species, i) => (
                     <div key={i} className="flex justify-between text-xs text-white/50">
                       <span>{species}</span>
                       <span>{Math.floor(Math.random() * 30 + 70)}%</span>
